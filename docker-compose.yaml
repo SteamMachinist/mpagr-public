@@ -1,0 +1,60 @@
+version: '3'
+services:
+  mpagr-admin:
+    build:
+      context: ./mpagr-admin
+    image: mpagr-admin:latest
+    env_file:
+      - ./db.env
+      - ./login.env
+    ports:
+      - "8081:8081"
+    volumes:
+      - ./mpagr-tdlight-session:/app/mpagr-tdlight-session
+      - ./docker-compose.yaml:/app/docker-compose.yaml
+      - ./api.env:/app/api.env
+      - ./db.env:/app/db.env
+      - ./sheets.env:/app/sheets.env
+      - ./tg.env:/app/tg.env
+      - ./login.env:/app/login.env
+      - /var/run/docker.sock:/var/run/docker.sock
+    tty: true
+    command: ["sh", "-c", "while true; do sleep 3600; done"]
+    container_name: mpagr-admin-container
+      
+  database:
+    image: 'postgres:latest'
+    env_file:
+      - ./db.env
+    ports:
+      - "5434:5432"
+    depends_on:
+      - mpagr-admin
+    container_name: database-container
+      
+  mpagr-engine:
+    build:
+      context: ./mpagr-engine
+    image: mpagr-engine:latest
+    env_file:
+      - ./api.env
+      - ./db.env
+      - ./sheets.env
+      - ./tg.env
+      - ./login.env
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./mpagr-tdlight-session:/app/mpagr-tdlight-session
+    tty: true
+    stdin_open: true
+    depends_on:
+      - database
+    container_name: mpagr-engine-container
+      
+  nginx:
+    build:
+      context: ./nginx
+    ports:
+      - "80:80"
+    container_name: nginx-container

@@ -1,0 +1,3 @@
+*.env
+mpagr-tdlight-session/
+credentials.json

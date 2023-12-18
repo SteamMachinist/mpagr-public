@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mpagr-admin управление сервисом</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h1>Управление сервисом </h1>
+    <p>Кнопки позволяют запустить или остановить работу сервиса</p>
+    <p>Подготовка сервиса занимает некоторое время, текущий статус отображен на главном экране</p>
+
+    <div class="row">
+        <div class="col-md-6">
+            <form method="post" action="/service-control/start">
+                <button class="btn btn-success btn-block" type="submit">Старт</button>
+            </form>
+        </div>
+
+        <div class="col-md-6">
+            <form method="post" action="/service-control/stop">
+                <button class="btn btn-danger btn-block" type="submit">Стоп</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Include Bootstrap JS and jQuery (Optional) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

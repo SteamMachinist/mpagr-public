@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>mpagr Настройки запуска</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h1>Настройки запуска</h1>
+    <p>
+        <a>Настройки запуска</a> |
+        <a href="/product/all">Товары</a>
+    </p>
+    <div class="row">
+        <div class="col-md-6">
+            <form method="post" th:action="@{/launch/set-time}">
+                <div class="form-group">
+                    <label for="timeChooser">Выберите время запуска:</label>
+                    <div class="input-group">
+                        <input class="form-control" id="timeChooser" name="timeChooser" th:value="${time}" type="time">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" id="saveButton" type="submit">Сохранить</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="form-group mb-0">
+                <label for="launchButton">Запуск вне расписания:</label>
+            </div>
+            <form method="post" th:action="@{/launch/now}">
+                <div class="form-group">
+                    <button class="btn btn-success" id="launchButton" type="submit">Запустить сейчас</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
